@@ -148,7 +148,8 @@ def profiling_data():
         },
         interactions={
             "target":['passing_rate', 'avg_buddy', 'avg_materials', 'avg_instructor']
-        }
+        },
+        dark_mode=True
         ).to_html()
     return profile
 
