@@ -47,10 +47,14 @@ df_hck_before = df_full[
     (df_full.type == 'HCK')
 ]['passing_rate']
 
+df_hck_batch = df_hck['batch'].max()
+df_rmt_batch = df_rmt['batch'].max()
+
 df_total_before = int(df_full[(df_full['phase'] == 0) & (df_full.batch < df_full.batch.max()-1)]['total_student'].sum())
 df_grad_before = int(df_full[(df_full['phase'] == 2) & (df_full.batch < df_full.batch.max()-1)]['passed'].sum())
 
 st.markdown("<h1 style='text-align: center;'>FTDS PROGRAM DASHBOARD</h1>", unsafe_allow_html=True)
+st.write('Latest Batch:', df_hck_batch, 'HCK and ', df_rmt_batch, 'RMT')
 
 with st.container():
     with st.expander("Show DS Data"):
