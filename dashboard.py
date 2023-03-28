@@ -117,7 +117,7 @@ with st.container():
     col2.plotly_chart(fig_hck, use_container_width=True)
 
 with st.container():
-    tab1, tab2, tab3 = st.tabs(["Buddy Evaluation", "Material Evaluation", "Instructor Evaluation"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Buddy Evaluation", "Material Evaluation", "Instructor Evaluation", "Withdraw Data"])
 
     fig_rmt_buddy = px.line(df_rmt, y='avg_buddy', x='batch', color='phase', markers=True, symbol='phase', labels={'avg_buddy': 'Buddy Rate', 'batch': 'Batch', 'phase': 'Phase'}, title='RMT Buddy Rate All Time')
     fig_rmt_buddy.update_layout(yaxis_range=[0, 10])
@@ -151,6 +151,17 @@ with st.container():
         col1, col2 = st.columns(2)
         col1.plotly_chart(fig_rmt_instructor, use_container_width=True)
         col2.plotly_chart(fig_hck_instructor, use_container_width=True)
+    
+    fig_rmt_buddy = px.line(df_rmt, y='withdraw', x='batch', color='phase', markers=True, symbol='phase', labels={'withdraw': 'Withdraw', 'batch': 'Batch', 'phase': 'Phase'}, title='RMT Withdraw All Time')
+    fig_rmt_buddy.update_layout(yaxis_range=[0, 10])
+
+    fig_hck_buddy = px.line(df_hck, y='withdraw', x='batch', color='phase', markers=True, symbol='phase', labels={'withdraw': 'Withdraw', 'batch': 'Batch', 'phase': 'Phase'}, title='HCK Withdraw All Time')
+    fig_hck_buddy.update_layout(yaxis_range=[0, 10])
+
+    with tab4:
+        col1, col2 = st.columns(2)
+        col1.plotly_chart(fig_rmt_buddy, use_container_width=True)
+        col2.plotly_chart(fig_hck_buddy, use_container_width=True)
 
 @st.cache
 def profiling_data():
